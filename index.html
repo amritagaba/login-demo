@@ -12,36 +12,38 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
+      overflow: hidden;
     }
     .container {
       background: #fff;
-      padding: 30px 40px;
-      border-radius: 15px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-      width: 350px;
+      padding: 40px 50px;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+      width: 400px;
       text-align: center;
       animation: fadeIn 1s ease-in-out;
     }
     h2 {
-      margin-bottom: 20px;
+      margin-bottom: 25px;
       color: #333;
+      font-size: 26px;
     }
     input {
       width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      border-radius: 8px;
+      padding: 14px;
+      margin: 12px 0;
+      border-radius: 10px;
       border: 1px solid #ccc;
-      font-size: 14px;
+      font-size: 16px;
     }
     button {
       width: 100%;
-      padding: 12px;
+      padding: 14px;
       border: none;
-      border-radius: 8px;
+      border-radius: 10px;
       background: #667eea;
       color: #fff;
-      font-size: 16px;
+      font-size: 18px;
       font-weight: bold;
       cursor: pointer;
       transition: background 0.3s;
@@ -51,37 +53,80 @@
     }
     .warning {
       margin-top: 20px;
-      padding: 10px;
-      border-radius: 8px;
+      padding: 12px;
+      border-radius: 10px;
       background: #fff3cd;
       color: #d9534f;
       font-weight: bold;
-      font-size: 14px;
+      font-size: 15px;
     }
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(-20px); }
       to { opacity: 1; transform: translateY(0); }
     }
+
+    /* Hidden hacked page */
+    .hacked {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: black;
+      color: lime;
+      text-align: center;
+      padding-top: 50px;
+      animation: glitch 1s infinite;
+    }
+    .hacked h1 {
+      font-size: 50px;
+      text-shadow: 2px 2px red, -2px -2px blue;
+      animation: blink 1s infinite alternate;
+    }
+    .hacked img {
+      margin-top: 30px;
+      max-width: 400px;
+      border-radius: 12px;
+    }
+    @keyframes blink {
+      from { opacity: 1; }
+      to { opacity: 0.3; }
+    }
+    @keyframes glitch {
+      0% { background: black; }
+      50% { background: #111; }
+      100% { background: black; }
+    }
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="container" id="loginPage">
     <h2>⚡ Phishing Demo Portal ⚡</h2>
     <input type="text" placeholder="👤 Username">
     <input type="password" placeholder="🔑 Password">
-    <button onclick="redirectToMeme()">Login</button>
+    <button onclick="redirectToFun()">Login</button>
     <div class="warning">
       ⚠️ Demo Only! This is what a phishing page could look like.<br>
       ❌ Do NOT enter real info.
     </div>
   </div>
 
+  <!-- Fun hacked page -->
+  <div class="hacked" id="hackedPage">
+    <h1>💀 You Got Fooled! 💀</h1>
+    <p>Just kidding... This is a demo. Never trust random QR codes 😉</p>
+    <img src="https://media.giphy.com/media/3o7abKhOpu0NwenH3O/giphy.gif" alt="Hacked Fun">
+    <p>🎉 Congratulations, you got “hacked” by a cat meme! 🎉</p>
+    <img src="https://cataas.com/cat/gif" alt="Cat Meme">
+  </div>
+
   <script>
-    function redirectToMeme() {
-      // Redirect to a cat meme (safe & fun)
-      window.location.href = "https://cataas.com/cat/gif"; 
-      // You can also use another meme like:
-      // window.location.href = "https://i.imgur.com/JkZBq.gif";
+    function redirectToFun() {
+      // Hide login form
+      document.getElementById("loginPage").style.display = "none";
+      // Show hacked page
+      document.getElementById("hackedPage").style.display = "block";
     }
   </script>
 </body>
